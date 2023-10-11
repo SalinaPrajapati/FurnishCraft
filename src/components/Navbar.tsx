@@ -23,6 +23,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button"
+
 
 const components: { title: string; href: string }[] = [
   {
@@ -53,20 +55,20 @@ const components: { title: string; href: string }[] = [
 
 export default function NavigationMenuDemo() {
   return (
-    <div className="flex justify-around items-center py-5">
+    <div className="flex items-center justify-around py-5">
       <div>
-        <h2 className="font-extrabold text-4xl text-yellow-600">Furniture</h2>
+        <h2 className="text-4xl font-extrabold text-yellow-600">Furniture</h2>
       </div>
       <div>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] font-mono">
             <SelectValue placeholder="Shop By Category" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">Table</SelectItem>
-            <SelectItem value="dark">Chair</SelectItem>
-            <SelectItem value="system">Sofa Set</SelectItem>
-            <SelectItem value="system">Other</SelectItem>
+          <SelectContent className="font-mono">
+            <SelectItem value="table">Table</SelectItem>
+            <SelectItem value="chair">Chair</SelectItem>
+            <SelectItem value="sofaset">Sofa Set</SelectItem>
+            <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -87,11 +89,11 @@ export default function NavigationMenuDemo() {
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      className="flex flex-col justify-end w-full h-full p-6 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
                       href="/"
                     >
                       <FaBeer />
-                      <div className="mb-2 mt-4 text-lg font-medium">
+                      <div className="mt-4 mb-2 text-lg font-medium">
                         shadcn/ui
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
@@ -143,12 +145,20 @@ export default function NavigationMenuDemo() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex pr-2 gap-4">
+      <div className="flex items-center gap-4 pr-2">
         <span>
           <FaSearch style={{ fontSize: "24px" }} />
         </span>
         <span>
           <HiShoppingCart style={{ fontSize: "24px" }} />
+        </span>
+        <span>
+        <Button variant="outline" asChild>
+          <Link  href="/login">Login</Link>
+        </Button>
+        </span>
+        <span>
+        <Button className="text-white bg-yellow-600 hover:bg-yellow-500">Signup</Button>
         </span>
       </div>
     </div>
@@ -171,7 +181,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="text-sm leading-snug line-clamp-2 text-muted-foreground">
             {children}
           </p>
         </a>

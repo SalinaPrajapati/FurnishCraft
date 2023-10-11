@@ -39,12 +39,12 @@ export default function UserAuthForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel className="font-mono">Username</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
-              <FormLabel>Password</FormLabel>
+              <FormLabel className="font-mono">Password</FormLabel>
               <FormControl>
                 <Input type="password" />
               </FormControl>
@@ -52,7 +52,7 @@ export default function UserAuthForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500">Submit</Button>
       </form>
     </Form>
   );
