@@ -16,8 +16,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
-  password: z.string().min(2).max(50),
+  username: z.string().trim().min(1,{
+    message:"Username must be at least 5 characters"
+  }),
+  password: z.string().trim().min(1, {
+    message:'Password should have minimum of 8 character'
+  }),
 });
 export default function UserAuthForm() {
   const form = useForm<z.infer<typeof formSchema>>({
