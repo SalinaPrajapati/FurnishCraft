@@ -1,4 +1,4 @@
-import UserAuthForm from "@/components/UserAuthForm";
+import UserAuthForm from "@/components/forms/SignInForm";
 
 export default function LoginPage() {
   return (
@@ -6,7 +6,7 @@ export default function LoginPage() {
         <div className="">
           <div className="flex flex-col mb-8 space-y-2 font-mono text-center">
             <h3>Login your account</h3>
-            <p>Enter yout username below to login your account</p>
+            <p>Enter your username below to login your account</p>
           </div>
         </div>
         <UserAuthForm />

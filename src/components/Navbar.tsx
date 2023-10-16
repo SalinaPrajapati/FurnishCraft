@@ -154,11 +154,13 @@ export default function NavigationMenuDemo() {
         </span>
         <span>
         <Button variant="outline" asChild>
-          <Link  href="/login">Login</Link>
+          <Link href="/login">Login</Link>
         </Button>
         </span>
         <span>
-        <Button className="text-white bg-yellow-600 hover:bg-yellow-500">Signup</Button>
+        <Button className="text-white bg-yellow-600 hover:bg-yellow-500" asChild>
+          <Link href="/signup">Sign Up</Link>
+        </Button>
         </span>
       </div>
     </div>
