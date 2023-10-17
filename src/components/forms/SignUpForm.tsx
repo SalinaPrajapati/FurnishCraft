@@ -14,88 +14,120 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-const formSchema = z.object({
-  username: z.string().trim().min(1, {
-    message: "Username must be at least 5 characters",
-  }),
-  email: z.string().trim().min(1, {
-    message: "Email must be valided",
-  }),
-  password: z.string().trim().min(1, {
-    message: "Password should have minimum of 8 character",
-  }),
-  confirmpassword: z.string().trim().min(1, {
-    message: "Password confirmation is required",
-  }),
-});
-export default function UserAuthForm() {
-    const router = useRouter()
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+const FormSchema = z
+  .object({
+    username: z.string().min(1, "Username is required").max(100),
+    email: z.string().min(1, "Email is required").email("Invalid email"),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(8, "Password must have than 8 characters"),
+    confirmPassword: z.string().min(1, "Password confirmation is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Password do not match",
+  });
+const UserAuthForm = () => {
+  const router = useRouter();
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
       email: "",
       password: "",
-      confirmpassword: ""
     },
   });
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await fetch('/api/user', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: values.username,
-            email: values.email,
-            password: values.password
-        })
-    })
-    if(response.ok) {
-       router.push('/login')
-    }else{
-        console.log('Failed to create account')
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    const response = await fetch("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      }),
+    });
+    if (response.ok) {
+      router.push("/login");
+    } else {
+      console.log("Failed to create account");
     }
-  }
+  };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-mono">Username</FormLabel>
-              <FormControl>
-                <Input placeholder="john" {...field} />
-              </FormControl>
-              <FormMessage />
-              <FormLabel className="font-mono">Email</FormLabel>
-              <FormControl>
-                <Input placeholder="john@gmail.com" {...field} />
-              </FormControl>
-              <FormMessage />
-              <FormLabel className="font-mono">Password</FormLabel>
-              <FormControl>
-                <Input type="password" />
-              </FormControl>
-              <FormMessage />
-              <FormLabel className="font-mono">Confirm Password</FormLabel>
-              <FormControl>
-                <Input type="password" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          type="submit"
-          className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500"
-        >
-          Submit
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <div className="space-y-2">
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="johndoe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="mail@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Re-Enter your password</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Re-Enter your password"
+                    type="password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button className="w-full mt-6" type="submit">
+          Sign up
         </Button>
       </form>
     </Form>
   );
-}
+};
+export default UserAuthForm;

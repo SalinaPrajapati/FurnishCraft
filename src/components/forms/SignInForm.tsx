@@ -14,50 +14,77 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const formSchema = z.object({
-  username: z.string().trim().min(1,{
-    message:"Username must be at least 5 characters"
-  }),
-  password: z.string().trim().min(1, {
-    message:'Password should have minimum of 8 character'
-  }),
+const FormSchema = z.object({
+  email: z.string().min(1, "Email is required").email("Invalid email"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Password must have than 8 characters"),
 });
-export default function UserAuthForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+const SignInForm = () => {
+  const router = useRouter();
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    const signInData = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+    if (signInData?.error) {
+      console.log(signInData?.error);
+    } else {
+      router.push("/");
+    }
+  };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-mono">Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormMessage />
-              <FormLabel className="font-mono">Password</FormLabel>
-              <FormControl>
-                <Input type="password" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500">Submit</Button>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <div className="space-y-2">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="mail@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button className="w-full mt-6" type="submit">
+          Sign in
+        </Button>
       </form>
     </Form>
   );
-}
+};
+export default SignInForm;

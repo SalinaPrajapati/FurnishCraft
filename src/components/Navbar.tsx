@@ -53,7 +53,7 @@ const components: { title: string; href: string }[] = [
   },
 ];
 
-export default function NavigationMenuDemo() {
+  const NavigationMenuDemo = () => {
   return (
     <div className="flex items-center justify-around py-5">
       <div>
@@ -159,7 +159,7 @@ export default function NavigationMenuDemo() {
         </span>
         <span>
         <Button className="text-white bg-yellow-600 hover:bg-yellow-500" asChild>
-          <Link href="/signup">Sign Up</Link>
+          <Link href="/sign-up">Sign Up</Link>
         </Button>
         </span>
       </div>
@@ -192,3 +192,4 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
+export default NavigationMenuDemo
