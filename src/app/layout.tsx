@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Dosis } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const dosis = Dosis({ weight:'600', subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ecommerce Site',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true} className={dosis.className}>{children}</body>
     </html>
   )
 }

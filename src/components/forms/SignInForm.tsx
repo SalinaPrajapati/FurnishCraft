@@ -80,9 +80,12 @@ const SignInForm = () => {
             )}
           />
         </div>
-        <Button className="w-full mt-6" type="submit">
-          Sign in
-        </Button>
+
+        <div>
+          <Button className="mt-6" type="submit">
+            Sign in
+          </Button>
+        </div>
       </form>
     </Form>
   );

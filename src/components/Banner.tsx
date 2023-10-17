@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 const Banner = () => {
   return (
     <div
-      className="object-left-bottom w-full col-span-2 bg-banner"
+      className="object-left-bottom w-full col-span-2 mt-6"
       style={{
         backgroundImage: `url('/assets/furniture.png')`,
         backgroundSize: "cover",

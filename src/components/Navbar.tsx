@@ -55,16 +55,16 @@ const components: { title: string; href: string }[] = [
 
   const NavigationMenuDemo = () => {
   return (
-    <div className="flex items-center justify-around py-5">
+    <div className="flex items-center justify-around py-5 fixed top-0 w-full bg-white">
       <div>
-        <h2 className="text-4xl font-extrabold text-yellow-600">Furniture</h2>
+        <h2 className="text-5xl font-extrabold text-yellow-600">Furniture</h2>
       </div>
       <div>
         <Select>
-          <SelectTrigger className="w-[180px] font-mono">
+          <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Shop By Category" />
           </SelectTrigger>
-          <SelectContent className="font-mono">
+          <SelectContent className="text-2xl">
             <SelectItem value="table">Table</SelectItem>
             <SelectItem value="chair">Chair</SelectItem>
             <SelectItem value="sofaset">Sofa Set</SelectItem>
@@ -74,7 +74,7 @@ const components: { title: string; href: string }[] = [
       </div>
 
       <NavigationMenu className="text-lg font-semibold">
-        <NavigationMenuList className="font-mono text-lg font-semibold">
+        <NavigationMenuList className=" text-lg font-semibold">
           <NavigationMenuItem>
             <Link href="" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -84,7 +84,7 @@ const components: { title: string; href: string }[] = [
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
-            <NavigationMenuContent className="font-mono">
+            <NavigationMenuContent className="">
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
@@ -117,7 +117,7 @@ const components: { title: string; href: string }[] = [
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-            <NavigationMenuContent className="font-mono">
+            <NavigationMenuContent className="">
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {components.map((component) => (
                   <ListItem
