@@ -26,8 +26,8 @@ export default function Timer() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="w-100">
-      <div className="flex text-2xl justify-between w-1/3">
+    <div className="w-100 bg-white">
+      <div className="flex text-2xl space-x-1.5 w-1/3">
         <div className="timer-segment">
           <span className="time">{days}</span>
           <span className="label">Days</span>
