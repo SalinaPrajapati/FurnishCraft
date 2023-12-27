@@ -9,7 +9,7 @@ export default function Timer() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const deadline = "December, 31, 2023";
+  const deadline = "Jan, 31, 2024";
 
   const getTime = () => {
     const time = Date.parse(deadline) - Date.now();
@@ -21,7 +21,7 @@ export default function Timer() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => getTime(deadline), 1000);
+    const interval = setInterval(() => getTime(), 1000);
 
     return () => clearInterval(interval);
   }, []);
