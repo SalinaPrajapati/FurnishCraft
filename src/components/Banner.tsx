@@ -11,8 +11,8 @@ const Banner = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex flex-col justify-center w-2/4 h-full p-8">
-        <h3 className="mb-5 text-5xl font-bold text-yellow-600">Home modern furniture</h3>
+      <div className="flex flex-col justify-center w-full md:w-2/4 h-full p-8">
+        <h3 className="mb-5 text-4xl md:text-5xl font-bold text-yellow-600">Home modern furniture</h3>
         <p className="text-slate-600">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est distinctio
           ratione modi corrupti totam veritatis mollitia beatae, sequi amet

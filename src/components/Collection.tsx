@@ -1,48 +1,63 @@
+import { Carousel } from "flowbite-react";
 
 const products = [
-    {
-      id: 1,
-      name: 'Home Decore',
-      href: '#',
-      imageSrc: '/assets/chair-2.jpg',
-      imageAlt: "Picture is not given",
-      item: '8 items'
-    },
-    {
-      id: 1,
-      name: 'Home Decore',
-      href: '#',
-      imageSrc: '/assets/sofa.jpg',
-      imageAlt: "Picture is not given",
-      item: '8 items'
-    },
-    {
-      id: 1,
-      name: 'Home Decore',
-      href: '#',
-      imageSrc: '/assets/chair.jpg',
-      imageAlt: "Picture is not given.",
-      item: '8 items'
-    },
-    {
-      id: 1,
-      name: 'Home Decore',
-      href: '#',
-      imageSrc: '/assets/table-1.jpg',
-      imageAlt: "Picture is not given.",
-      item: '8 items'
-    },
-    // More products...
-  ]
-  
-  export default function Collection() {
-    return (
-      <div className="bg-white">
-        <div className="mx-auto max-w-2xl py-16 sm:py-20 lg:max-w-7xl">
-          <h2 className="text-2xl font-bold text-center tracking-tight text-gray-900">Our Collection</h2>
-          <div className="border-b-2 border-yellow-600 w-24 text-center m-auto"></div>
-  
-          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+  {
+    id: 1,
+    name: "Home Decore",
+    href: "#",
+    imageSrc: "/assets/chair-2.jpg",
+    imageAlt: "Picture is not given",
+    item: "8 items",
+  },
+  {
+    id: 2,
+    name: "Home Decore",
+    href: "#",
+    imageSrc: "/assets/sofa.jpg",
+    imageAlt: "Picture is not given",
+    item: "8 items",
+  },
+  {
+    id: 3,
+    name: "Home Decore",
+    href: "#",
+    imageSrc: "/assets/chair.jpg",
+    imageAlt: "Picture is not given.",
+    item: "8 items",
+  },
+  {
+    id: 4,
+    name: "Home Decore",
+    href: "#",
+    imageSrc: "/assets/table-1.jpg",
+    imageAlt: "Picture is not given.",
+    item: "8 items",
+  },
+  // More products...
+];
+
+export default function Collection() {
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl py-16 sm:py-20 lg:max-w-7xl">
+        <h2 className="text-2xl font-bold text-center tracking-tight text-gray-900">
+          Our Collection
+        </h2>
+        <div className="border-b-2 border-yellow-600 w-24 text-center m-auto"></div>
+
+        {/*  */}
+        <div className="h-56 sm:h-2/4 xl:h-80 2xl:h-96 lg:hidden p-2 sm:p-3">
+          <Carousel>
+            <img src="/assets/chair-2.jpg" alt="..." />
+            <img src="/assets/sofa.jpg" alt="..." />
+            <img src="/assets/table-1.jpg" alt="..." />
+            <img src="/assets/chair.jpg" alt="..." />
+          </Carousel>
+        </div>
+        {/*  */}
+
+        <div className="hidden lg:flex justify-center">
+          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-4 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product) => (
               <div key={product.id} className="group relative">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 relative">
@@ -59,7 +74,8 @@ const products = [
                       </a>
                     </h3>
                     <p className="text-gray-700 text-sm hover:text-white">
-                        ({product.item})</p>
+                      ({product.item})
+                    </p>
                   </div>
                 </div>
               </div>
@@ -67,5 +83,6 @@ const products = [
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}

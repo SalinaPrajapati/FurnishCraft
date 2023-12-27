@@ -6,6 +6,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { FaBeer, FaSearch } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,8 +24,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button"
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const components: { title: string; href: string }[] = [
   {
@@ -53,15 +62,48 @@ const components: { title: string; href: string }[] = [
   },
 ];
 
-  const NavigationMenuDemo = () => {
+const NavigationMenuDemo = () => {
   return (
-    <div className="flex items-center justify-around py-5 fixed top-0 w-full bg-white">
-      <div>
-        <h2 className="text-5xl font-extrabold text-yellow-600">Furniture</h2>
+    <div className="flex items-center justify-between py-5 px-2 fixed top-0 w-full bg-white">
+      <div className="lg:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <GiHamburgerMenu style={{ fontSize: "24px" }} />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Home</SheetTitle>
+              <SheetTitle>Shop</SheetTitle>
+              <SheetTitle>Product</SheetTitle>
+              <SheetTitle>Blog</SheetTitle>
+              <SheetTitle>Latest News</SheetTitle>
+            </SheetHeader>
+            <div className="md:hidden">
+              <span>
+                <Button variant="outline" asChild>
+                  <Link href="/login">Login</Link>
+                </Button>
+              </span>
+              <span>
+                <Button
+                  className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
+                  asChild
+                >
+                  <Link href="/sign-up">Sign Up</Link>
+                </Button>
+              </span>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+      <div className="">
+        <h2 className="text-4xl md:text-5xl font-black md:font-extrabold text-yellow-600 hover:text-yellow-200">
+          Furniture
+        </h2>
       </div>
       <div>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] hidden lg:flex">
             <SelectValue placeholder="Shop By Category" />
           </SelectTrigger>
           <SelectContent className="text-2xl">
@@ -73,99 +115,119 @@ const components: { title: string; href: string }[] = [
         </Select>
       </div>
 
-      <NavigationMenu className="text-lg font-semibold">
-        <NavigationMenuList className=" text-lg font-semibold">
-          <NavigationMenuItem>
-            <Link href="" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Home
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
-            <NavigationMenuContent className="">
-              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="flex flex-col justify-end w-full h-full p-6 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
-                      href="/"
-                    >
-                      <FaBeer />
-                      <div className="mt-4 mb-2 text-lg font-medium">
-                        shadcn/ui
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Beautifully designed components built with Radix UI and
-                        Tailwind CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-            <NavigationMenuContent className="">
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {components.map((component) => (
+      <div className="hidden lg:flex">
+        <NavigationMenu className="text-lg font-semibold">
+          <NavigationMenuList className=" text-lg font-semibold">
+            <NavigationMenuItem>
+              <Link href="" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Home
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+              <NavigationMenuContent className="">
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex flex-col justify-end w-full h-full p-6 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
+                        href="/"
+                      >
+                        <FaBeer />
+                        <div className="mt-4 mb-2 text-lg font-medium">
+                          shadcn/ui
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Beautifully designed components built with Radix UI
+                          and Tailwind CSS.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="" title="Introduction">
+                    Re-usable components built using Radix UI and Tailwind CSS.
+                  </ListItem>
+                  <ListItem href="/docs/installation" title="Installation">
+                    How to install dependencies and structure your app.
+                  </ListItem>
                   <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  ></ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Latest News
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Blog
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <div className="flex items-center gap-4 pr-2">
-        <span>
-          <FaSearch style={{ fontSize: "24px" }} />
-        </span>
-        <span>
-          <HiShoppingCart style={{ fontSize: "24px" }} />
-        </span>
-        <span>
-        <Button variant="outline" asChild>
-          <Link href="/login">Login</Link>
-        </Button>
-        </span>
-        <span>
-        <Button className="text-white bg-yellow-600 hover:bg-yellow-500" asChild>
-          <Link href="/sign-up">Sign Up</Link>
-        </Button>
-        </span>
+                    href="/docs/primitives/typography"
+                    title="Typography"
+                  >
+                    Styles for headings, paragraphs, lists...etc
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+              <NavigationMenuContent className="">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    ></ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Latest News
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Blog
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+      <div className="flex items-center gap-5 pr-2">
+        <div className="hidden md:flex">
+          <span>
+            <FaSearch style={{ fontSize: "24px" }} />
+          </span>
+          <span>
+            <HiShoppingCart style={{ fontSize: "24px" }} />
+          </span>
+        </div>
+        <div className="md:hidden flex items-center gap-2 pr-2">
+          <span>
+            <FaSearch style={{ fontSize: "18px" }} />
+          </span>
+          <span>
+            <HiShoppingCart style={{ fontSize: "18px" }} />
+          </span>
+        </div>
+        <div className="hidden md:flex">
+          <span>
+            <Button variant="outline" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+          </span>
+          <span>
+            <Button
+              className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
+              asChild
+            >
+              <Link href="/sign-up">Sign Up</Link>
+            </Button>
+          </span>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -192,4 +254,4 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-export default NavigationMenuDemo
+export default NavigationMenuDemo;
