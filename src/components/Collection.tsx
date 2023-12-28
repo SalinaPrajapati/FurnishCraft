@@ -46,7 +46,7 @@ export default function Collection() {
         <div className="border-b-2 border-yellow-600 w-24 text-center m-auto"></div>
 
         {/*  */}
-        <div className="h-56 sm:h-2/4 xl:h-80 2xl:h-96 lg:hidden p-2 sm:p-3">
+        <div className="object-none sm:flex h-56 md:h-96 xl:h-80 2xl:h-96 md:object-center lg:hidden md:hidden p-2 sm:p-3">
           <Carousel>
             <img src="/assets/chair-2.jpg" alt="..." />
             <img src="/assets/sofa.jpg" alt="..." />
@@ -56,8 +56,8 @@ export default function Collection() {
         </div>
         {/*  */}
 
-        <div className="hidden lg:flex justify-center">
-          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-4 lg:grid-cols-4 xl:gap-x-8">
+        <div className="hidden md:flex lg:flex justify-center">
+          <div className="mt-12 grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product) => (
               <div key={product.id} className="group relative">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 relative">

@@ -64,7 +64,7 @@ const components: { title: string; href: string }[] = [
 
 const NavigationMenuDemo = () => {
   return (
-    <div className="flex items-center justify-between py-5 px-2 fixed top-0 w-full bg-white">
+    <div className="flex items-center justify-between py-5 px-8 fixed top-0 w-full bg-white">
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger>
