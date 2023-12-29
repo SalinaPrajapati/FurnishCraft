@@ -5,9 +5,9 @@ import Collection from "@/components/Collection"
 export default function HomePage() {
   return (
     <>
-      {/* <Navbar></Navbar>
-      <Banner></Banner> */}
-      <Collection></Collection>
+      <Navbar></Navbar>
+      {/* <Banner></Banner> */}
+      {/* <Collection></Collection> */}
     </>
   )
 }

@@ -1,6 +1,4 @@
 "use client";
-
-import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -16,6 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
   Select,
@@ -33,7 +32,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const components: { title: string; href: string }[] = [
   {
@@ -63,6 +74,19 @@ const components: { title: string; href: string }[] = [
 ];
 
 const NavigationMenuDemo = () => {
+  const router = useRouter();
+  // const [data, setData] = useState("nothing")
+  const logout = async () => {
+    try {
+      await axios.get("/api/users/logout");
+      toast.success("Logout successful");
+      router.push("/login");
+    } catch (error: any) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-between py-5 px-8 fixed top-0 w-full bg-white">
       <div className="lg:hidden">
@@ -222,6 +246,29 @@ const NavigationMenuDemo = () => {
             >
               <Link href="/sign-up">Sign Up</Link>
             </Button>
+          </span>
+          <span>
+            <Button variant="outline" asChild onClick={logout}>
+              <Link href="/login">Logout</Link>
+            </Button>
+          </span>
+          <span>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </span>
         </div>
       </div>

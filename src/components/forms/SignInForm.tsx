@@ -16,6 +16,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -33,21 +37,27 @@ const SignInForm = () => {
       password: "",
     },
   });
+
+  const [loading, setLoading] = React.useState(false);
+
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const signInData = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-    });
-    if (signInData?.error) {
-      console.log(signInData?.error);
-    } else {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/login", values);
+      console.log("Login success", response.data);
+      toast.success("Login success");
       router.push("/");
+    } catch (error: any) {
+      console.log("Login failed", error.message);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+      <h2>{loading ? "processing.." : ""}</h2>
         <div className="space-y-2">
           <FormField
             control={form.control}
@@ -86,6 +96,7 @@ const SignInForm = () => {
             Sign in
           </Button>
         </div>
+        <Link href="/signup"> Visit signup page</Link>
       </form>
     </Form>
   );

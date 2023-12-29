@@ -15,6 +15,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const FormSchema = z
   .object({
@@ -40,27 +44,30 @@ const UserAuthForm = () => {
       password: "",
     },
   });
+
+  // const [buttonDisabled, setButtonDisabled] = React.useState(true)
+
+  const [loading, setLoading] = React.useState(false);
+
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      }),
-    });
-    if (response.ok) {
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/signup", values);
+      console.log("Signup success", response.data);
       router.push("/login");
-    } else {
-      console.log("Failed to create account");
+    } catch (error: any) {
+      console.log("Signup failed", error.message);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <h2>{loading ? "processing.." : ""}</h2>
         <div className="space-y-2">
           <FormField
             control={form.control}
@@ -127,6 +134,7 @@ const UserAuthForm = () => {
           Sign up
         </Button>
       </form>
+      <Link href="/login"> Visit login page</Link>
     </Form>
   );
 };
