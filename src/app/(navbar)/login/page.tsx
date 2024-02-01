@@ -1,4 +1,4 @@
-import UserAuthForm from "@/components/forms/SignInForm";
+import LogInFormWrapper from "@/app/(navbar)/login/logInFormWrapper";
 
 export default function LoginPage() {
   return (
@@ -9,7 +9,7 @@ export default function LoginPage() {
             <p>Enter your username below to login your account</p>
           </div>
         </div>
-        <UserAuthForm />
+        <LogInFormWrapper />
       </div>
   );
 }

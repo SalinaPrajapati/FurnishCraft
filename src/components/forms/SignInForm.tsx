@@ -17,9 +17,11 @@ import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useAppDispatch } from "@/store";
+import { setAuth, setJid } from "@/store/slices/authSlice";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -30,6 +32,8 @@ const FormSchema = z.object({
 });
 const SignInForm = () => {
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -44,11 +48,14 @@ const SignInForm = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", values);
-      console.log("Login success", response.data);
+      if(values){
+        const response = await axios.get("/api/users/me");
+        dispatch(setJid(response.data.data));
+        dispatch(setAuth(true));
+      }
       toast.success("Login success");
       router.push("/");
     } catch (error: any) {
-      console.log("Login failed", error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);

@@ -53,10 +53,8 @@ const UserAuthForm = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", values);
-      console.log("Signup success", response.data);
       router.push("/login");
     } catch (error: any) {
-      console.log("Signup failed", error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);

@@ -41,10 +41,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../store";
+import { setAuth, setJid } from "../store/slices/authSlice";
 
 const components: { title: string; href: string }[] = [
   {
@@ -76,13 +78,25 @@ const components: { title: string; href: string }[] = [
 const NavigationMenuDemo = () => {
   const router = useRouter();
   // const [data, setData] = useState("nothing")
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuth) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [isAuth]);
   const logout = async () => {
     try {
       await axios.get("/api/users/logout");
       toast.success("Logout successful");
       router.push("/login");
+      dispatch(setJid(""));
+      dispatch(setAuth(false));
     } catch (error: any) {
-      console.log(error.message);
       toast.error(error.message);
     }
   };
@@ -235,24 +249,38 @@ const NavigationMenuDemo = () => {
         </div>
         <div className="hidden md:flex">
           <span>
-            <Button variant="outline" asChild>
+        {!isAuthenticated && (
+          <>
+          <Button variant="outline" asChild>
               <Link href="/login">Login</Link>
             </Button>
+          </>
+          )}
           </span>
           <span>
+          {!isAuthenticated && (
+            <>
             <Button
               className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
               asChild
             >
               <Link href="/sign-up">Sign Up</Link>
             </Button>
+            </>
+            )}
           </span>
-          <span>
+          <span className="mr-2">
+          {isAuthenticated && (
+            <>
             <Button variant="outline" asChild onClick={logout}>
               <Link href="/login">Logout</Link>
             </Button>
+            </>
+            )}
           </span>
           <span>
+          {isAuthenticated && (
+            <>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
@@ -269,6 +297,9 @@ const NavigationMenuDemo = () => {
                 <DropdownMenuItem>Subscription</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            </>
+            )}
+            
           </span>
         </div>
       </div>
