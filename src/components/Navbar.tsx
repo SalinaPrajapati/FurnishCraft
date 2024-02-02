@@ -77,7 +77,6 @@ const components: { title: string; href: string }[] = [
 
 const NavigationMenuDemo = () => {
   const router = useRouter();
-  // const [data, setData] = useState("nothing")
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>();
   const dispatch = useAppDispatch();
@@ -102,7 +101,7 @@ const NavigationMenuDemo = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-5 px-8 fixed top-0 w-full bg-white">
+    <div className="flex items-center justify-between py-5 px-8 fixed top-0 w-full bg-white z-40">
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger>
