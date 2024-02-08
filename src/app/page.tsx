@@ -10,9 +10,9 @@ export default function HomePage() {
   return (
     <>
       <ReduxProvider>
-        <Navbar />
+        {/* <Navbar />
         <Banner></Banner>
-        <Collection></Collection>
+        <Collection></Collection> */}
         <Product></Product>
       </ReduxProvider>
     </>

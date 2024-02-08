@@ -7,6 +7,13 @@ import { products } from "@/utils/product";
 
 export default function Product() {
   const [isHovered, setIsHovered] = useState(false);
+  const [productsState, setProductsState] = useState(products.map(() => ({ isHovered: false })));
+
+  const handleHoverChange = (index:any, isHovered:any) => {
+    const updatedProducts = [...productsState];
+    updatedProducts[index].isHovered = isHovered;
+    setProductsState(updatedProducts);
+  };
 
   const myStyle = {
     bottom: "30.2rem",
@@ -22,17 +29,17 @@ export default function Product() {
         {products.map((product: any, index: number) => (
           <div
             key={index}
-            className="h-auto w-full flex-none md:flex align-middle"
+            className="h-auto w-full flex-none md:flex align-middle justify-evenly items-center"
           >
             <div
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => handleHoverChange(index, true)}
+              onMouseLeave={() => handleHoverChange(index, false)}
               className="max-w-[18rem]"
             >
               <div className="max-w-[18rem] h-72 inline-block align-middle relative overflow-hidden bg-cover bg-no-repeat">
                 <img
                   src={
-                    isHovered
+                    productsState[index].isHovered
                       ? product.images[0].image
                       : product.images[0].picture
                   }
@@ -40,14 +47,22 @@ export default function Product() {
                 />
               </div>
             </div>
-            <div className="flex justify-between mt-2 p-2 border-solid rounded-lg border w-24 m-auto border-sky-500">
-              <span className="flex justify-center items-center">
-                <HiShoppingCart style={{ fontSize: "24px" }} />
-              </span>
-              <span className="text-slate-700">|</span>
-              <span className="flex justify-center items-center">
-                <HiHeart style={{ fontSize: "24px" }} />
-              </span>
+            <div className="flex flex-col text-center">
+              <div className="flex justify-between mt-2 p-2 border-solid rounded-lg border w-24 border-sky-500">
+                <span className="flex justify-center items-center">
+                  <HiShoppingCart style={{ fontSize: "24px" }} />
+                </span>
+                <span className="text-slate-700">|</span>
+                <span className="flex justify-center items-center">
+                  <HiHeart style={{ fontSize: "24px" }} />
+                </span>
+              </div>
+              <div className="mt-6 text-xl font-extrabold">
+                <p>{product.name}</p>
+                </div>
+                <div className="mt-1">
+                  <p>{product.price}</p>
+                </div>
             </div>
           </div>
         ))}
