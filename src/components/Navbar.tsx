@@ -92,7 +92,7 @@ const NavigationMenuDemo = () => {
     try {
       await axios.get("/api/users/logout");
       toast.success("Logout successful");
-      router.push("/login");
+      router.push("/");
       dispatch(setJid(""));
       dispatch(setAuth(false));
     } catch (error: any) {
@@ -126,7 +126,7 @@ const NavigationMenuDemo = () => {
                   className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
                   asChild
                 >
-                  <Link href="/sign-up">Sign Up</Link>
+                  <Link href="/signup">Sign Up</Link>
                 </Button>
               </span>
             </div>
@@ -263,7 +263,7 @@ const NavigationMenuDemo = () => {
                   className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
                   asChild
                 >
-                  <Link href="/sign-up">Sign Up</Link>
+                  <Link href="/signup">Sign Up</Link>
                 </Button>
               </>
             )}
