@@ -14,19 +14,19 @@ export default function Product() {
     height: "30px",
   };
   return (
-    <div className="relative m-14 p-9 h-1/3 border-solid border-2 border-sky-500">
+    <div className="relative m-14 p-9 h-96 border-solid border-2 border-sky-500">
       <div className="absolute left-6" style={myStyle}>
         <Timer></Timer>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8 h-auto">
         {products.map((product: any, index: number) => (
-          <div key={index} className="h-auto w-full inline-block align-middle">
+          <div key={index} className="h-auto w-full flex align-middle">
             <div
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               className="max-w-[18rem]"
             >
-              <div className="max-w-[18rem] h-2/6 inline-block align-middle relative overflow-hidden bg-cover bg-no-repeat">
+              <div className="max-w-[18rem] h-72 inline-block align-middle relative overflow-hidden bg-cover bg-no-repeat">
                 <img
                   src={
                     isHovered
@@ -37,11 +37,12 @@ export default function Product() {
                 />
               </div>
             </div>
-            <div className="flex justify-between mt-2 p-2 border-solid border-2 w-1/3 m-auto border-sky-500">
-              <span className="w-1/2 flex justify-center items-center">
+            <div className="flex justify-between mt-2 p-2 border-solid rounded-lg border w-24 m-auto border-sky-500">
+              <span className="flex justify-center items-center">
                 <HiShoppingCart style={{ fontSize: "24px" }} />
               </span>
-              <span className="w-1/2 flex justify-center items-center">
+              <span className="text-slate-700">|</span>
+              <span className="flex justify-center items-center">
                 <HiHeart style={{ fontSize: "24px" }} />
               </span>
             </div>
