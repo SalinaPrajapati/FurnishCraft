@@ -14,13 +14,16 @@ export default function Product() {
     height: "30px",
   };
   return (
-    <div className="relative m-14 p-9 h-96 border-solid border-2 border-sky-500">
-      <div className="absolute left-6" style={myStyle}>
+    <div className="relative md:m-14 m-5 p-5 md:p-8 h-auto w-80 md:h-96 md:w-11/12 border-solid border-2 border-sky-500">
+      <div className="absolute left-6 hidden sm:block" style={myStyle}>
         <Timer></Timer>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8 h-auto">
         {products.map((product: any, index: number) => (
-          <div key={index} className="h-auto w-full flex align-middle">
+          <div
+            key={index}
+            className="h-auto w-full flex-none md:flex align-middle"
+          >
             <div
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}

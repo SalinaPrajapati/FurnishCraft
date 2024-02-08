@@ -248,57 +248,56 @@ const NavigationMenuDemo = () => {
         </div>
         <div className="hidden md:flex">
           <span>
-        {!isAuthenticated && (
-          <>
-          <Button variant="outline" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-          </>
-          )}
+            {!isAuthenticated && (
+              <>
+                <Button variant="outline" asChild>
+                  <Link href="/login">Login</Link>
+                </Button>
+              </>
+            )}
           </span>
           <span>
-          {!isAuthenticated && (
-            <>
-            <Button
-              className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
-              asChild
-            >
-              <Link href="/sign-up">Sign Up</Link>
-            </Button>
-            </>
+            {!isAuthenticated && (
+              <>
+                <Button
+                  className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
+                  asChild
+                >
+                  <Link href="/sign-up">Sign Up</Link>
+                </Button>
+              </>
             )}
           </span>
           <span className="mr-2">
-          {isAuthenticated && (
-            <>
-            <Button variant="outline" asChild onClick={logout}>
-              <Link href="/login">Logout</Link>
-            </Button>
-            </>
+            {isAuthenticated && (
+              <>
+                <Button variant="outline" asChild onClick={logout}>
+                  <Link href="/login">Logout</Link>
+                </Button>
+              </>
             )}
           </span>
           <span>
-          {isAuthenticated && (
-            <>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            </>
+            {isAuthenticated && (
+              <>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>Team</DropdownMenuItem>
+                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
             )}
-            
           </span>
         </div>
       </div>
