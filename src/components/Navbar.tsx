@@ -115,15 +115,15 @@ const NavigationMenuDemo = () => {
               <SheetTitle>Blog</SheetTitle>
               <SheetTitle>Latest News</SheetTitle>
             </SheetHeader>
-            <div className="md:hidden">
+            <div className="md:hidden flex flex-col">
               <span>
-                <Button variant="outline" asChild>
+                <Button variant="outline" asChild className="w-full">
                   <Link href="/login">Login</Link>
                 </Button>
               </span>
               <span>
                 <Button
-                  className="text-white bg-yellow-600 hover:bg-yellow-500 ml-1"
+                  className="text-white bg-yellow-600 hover:bg-yellow-500 my-2 w-full"
                   asChild
                 >
                   <Link href="/signup">Sign Up</Link>

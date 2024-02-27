@@ -21,7 +21,7 @@ export default function Product() {
     height: "30px",
   };
   return (
-    <div className="relative md:m-14 m-5 p-5 md:p-8 h-auto w-80 md:h-96 md:w-11/12 border-solid border-2 border-sky-500">
+    <div className="relative md:m-auto m-5 p-5 md:p-8 h-auto md:h-96 md:w-4/5 border-solid border-2 border-sky-500">
       <div className="absolute left-6 hidden sm:block" style={myStyle}>
         <Timer></Timer>
       </div>
@@ -36,7 +36,7 @@ export default function Product() {
               onMouseLeave={() => handleHoverChange(index, false)}
               className="max-w-[18rem]"
             >
-              <div className="max-w-[18rem] h-72 inline-block align-middle relative overflow-hidden bg-cover bg-no-repeat">
+              <div className="max-w-[18rem] h-72 flex item relative overflow-hidden bg-cover bg-no-repeat">
                 <img
                   src={
                     productsState[index].isHovered
@@ -47,7 +47,7 @@ export default function Product() {
                 />
               </div>
             </div>
-            <div className="flex flex-col text-center">
+            <div className="flex flex-col items-center">
               <div className="flex justify-between mt-2 p-2 border-solid rounded-lg border w-24 border-sky-500">
                 <span className="flex justify-center items-center">
                   <HiShoppingCart style={{ fontSize: "24px" }} />
