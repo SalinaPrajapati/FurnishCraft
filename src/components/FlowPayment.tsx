@@ -12,18 +12,21 @@ const payments = [
     icon: FaRocket,
   },
   {
+    id: 2,
     name: "Return Policy",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typeset ting industry lorem Ipsum",
     icon: FaBoxOpen,
   },
   {
+    id: 3,
     name: "Payment Secured",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typeset ting industry lorem Ipsum",
     icon: FaPaypal,
   },
   {
+    id: 4,
     name: "Money Back Guarantee",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typeset ting industry lorem Ipsum",
