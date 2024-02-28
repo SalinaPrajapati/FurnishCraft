@@ -54,7 +54,7 @@ const Footer = () => {
               </h2>
               <nav className="list-none mb-10 text-lg">
                 <li>
-                  <a className="text-white hover:text-gray-800">FAQ's</a>
+                  <a className="text-white hover:text-gray-800">FAQs</a>
                 </li>
                 <li>
                   <a className="text-white hover:text-gray-800">Shipping</a>

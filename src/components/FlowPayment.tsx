@@ -35,7 +35,7 @@ export default function CardWithForm() {
   return (
     <div className="flex flex-wrap mt-28">
       {payments.map((payment) => (
-        <Card className="w-[300px] p-5 m-auto">
+        <Card key={payment.id} className="w-[300px] p-5 m-auto">
           <div className="flex justify-center items-center mb-3">
             <span className="text-yellow-400 hover:animate-bounce mr-1">
               {React.createElement(payment.icon, {
