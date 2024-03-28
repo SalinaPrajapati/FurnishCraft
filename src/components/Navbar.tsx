@@ -50,28 +50,20 @@ import { setAuth, setJid } from "../store/slices/authSlice";
 
 const components: { title: string; href: string }[] = [
   {
-    title: "Product Pages",
-    href: "/docs/primitives/alert-dialog",
+    title: "Table Pages",
+    href: "/",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Chair Pages",
+    href: "/",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Sofa Set",
+    href: "/",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
+    title: "Bed Set",
+    href: "/",
   },
 ];
 
@@ -166,34 +158,17 @@ const NavigationMenuDemo = () => {
               <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
               <NavigationMenuContent className="">
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex flex-col justify-end w-full h-full p-6 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
-                        href="/"
-                      >
-                        <FaBeer />
-                        <div className="mt-4 mb-2 text-lg font-medium">
-                          shadcn/ui
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Beautifully designed components built with Radix UI
-                          and Tailwind CSS.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="" title="Introduction">
-                    Re-usable components built using Radix UI and Tailwind CSS.
+                  <ListItem href="" title="Textile Furniture">
+                  Textile Furniture provide furniture in reasonable price
                   </ListItem>
-                  <ListItem href="/docs/installation" title="Installation">
-                    How to install dependencies and structure your app.
+                  <ListItem title="Timro Hamro Furniture">
+                    We provide good and best furniture
                   </ListItem>
                   <ListItem
-                    href="/docs/primitives/typography"
-                    title="Typography"
+                    href=""
+                    title="PVC Furniture"
                   >
-                    Styles for headings, paragraphs, lists...etc
+                    Best price best quality
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
@@ -290,10 +265,8 @@ const NavigationMenuDemo = () => {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem><Link href={"/profile"}>Profile</Link></DropdownMenuItem>
                     <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </>

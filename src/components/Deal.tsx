@@ -1,4 +1,5 @@
 // import Image from "next/image";
+import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 const Deal = () => {
   return (
@@ -31,9 +32,11 @@ const Deal = () => {
               laudantium minus.
             </p>
             <div>
-              <Button className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500">
-                Shop now
-              </Button>
+              <Link href={"/product"} passHref>
+                <Button className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500">
+                  Shop now
+                </Button>
+              </Link>
             </div>
           </div>
     </div>
