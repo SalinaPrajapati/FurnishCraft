@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import Image from "next/image";
 
 const products = [
   {
@@ -48,10 +49,10 @@ export default function Collection() {
         {/*  */}
         <div className="object-none sm:flex h-56 md:h-96 xl:h-80 2xl:h-96 md:object-center lg:hidden md:hidden p-2 sm:p-3">
           <Carousel>
-            <img src="/assets/chair-2.jpg" alt="..." />
-            <img src="/assets/sofa.jpg" alt="..." />
-            <img src="/assets/table-1.jpg" alt="..." />
-            <img src="/assets/chair.jpg" alt="..." />
+            <Image width="200" height="100" src="/assets/chair-2.jpg" alt="..." />
+            <Image width="200" height="100" src="/assets/sofa.jpg" alt="..." />
+            <Image width="200" height="100" src="/assets/table-1.jpg" alt="..." />
+            <Image width="200" height="100" src="/assets/chair.jpg" alt="..." />
           </Carousel>
         </div>
         {/*  */}
@@ -61,7 +62,7 @@ export default function Collection() {
             {products.map((product) => (
               <div key={product.id} className="group">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 relative">
-                  <img
+                  <Image width="200" height="100"
                     src={product.imageSrc}
                     alt={product.imageAlt}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
