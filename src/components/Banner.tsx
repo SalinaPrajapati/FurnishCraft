@@ -1,5 +1,6 @@
 // import Image from "next/image";
 import { Button } from "@/components/ui/button"
+import styles from './Button.module.css'
 const Banner = () => {
   return (
     <div
@@ -19,7 +20,7 @@ const Banner = () => {
           deserunt suscipit tempora ea iure aliquid. Illum sequi aut laudantium
           minus.
         </p>
-        <div><Button className="mt-5 text-white bg-yellow-600 hover:bg-yellow-500">Shop now</Button></div>
+        <div className={styles.button}><Button className={`mt-5 text-white bg-yellow-600 hover:bg-yellow-500 ${styles.btn}`}>Shop now</Button></div>
       </div>
     </div>
   );
